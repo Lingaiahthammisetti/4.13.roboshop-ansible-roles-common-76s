@@ -1,5 +1,2 @@
-rabbitmq_user = roboshop
-rabbitmq_password = roboshop123
-
-
-
+rq_user = roboshop
+rq_password = roboshop123
