@@ -8,3 +8,4 @@ CART_HOST: cart-dev.lingaiah.online
 SHIPPING_HOST: shipping-dev.lingaiah.online 
 PAYMENT_HOST: payment-dev.lingaiah.online 
 WEB_HOST: web-dev.lingaiah.online 
+DISPATCH_HOST: dispatch-dev.lingaiah.online
