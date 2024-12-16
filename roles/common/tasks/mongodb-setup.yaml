@@ -20,13 +20,13 @@
 
 - name: print the products_count
   ansible.builtin.debug:
-  when: component == "catalogue"
     msg: "entries products_count: {{products_count}}"
+  when: component == "catalogue"
 
 - name: print the users_count
   ansible.builtin.debug:
-  when: component == "user"
     msg: "entries pusers_count: {{users_count}}"
+  when: component == "user"
 
 - name: "load catalogue data"
   ansible.builtin.shell: "mongosh --host {{MONGODB_HOST}} < /app/schema/{{component}}.js"
