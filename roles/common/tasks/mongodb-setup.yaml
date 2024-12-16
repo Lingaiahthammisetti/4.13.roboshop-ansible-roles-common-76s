@@ -8,16 +8,8 @@
     name: mongodb-mongosh
     state: present
 
-
-
-
-
-
-
-
-
 - name: "get the catalogue entries count"
-  ansible.builtin.command:  mongosh --host {{MONGODB_HOST}} --quiet --eval 'db = db.getSiblingDB("catalogue"); db.products.countDocuments()'
+  ansible.builtin.command: mongosh --host {{MONGODB_HOST}} --quiet --eval 'db = db.getSiblingDB("catalogue"); db.products.countDocuments()'
   register: products_count
   when: component == "catalogue"
 
@@ -46,3 +38,4 @@
   ansible.builtin.command: mongosh --host {{MONGODB_HOST}} < /app/schema/{{component}}.js
   when: component == "user" and users_count.stdout == "0"  # keep double quotes
   #ignore_errors: true
+  
