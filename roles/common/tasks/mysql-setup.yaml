@@ -11,15 +11,15 @@
     ansible.builtin.debug:
       msg: "schema output: {{schema}}"
 
-  - name: load cities data
+  - name: load cities data - schema
     ansible.builtin.shell: "mysql -h mysql.lingaiah.online -uroot -pRoboShop@1 < /app/db/schema.sql"
     when: schema.stdout != "1"
 
-  - name: load cities data
+  - name: load cities data - app-user
     ansible.builtin.shell: "mysql -h mysql.lingaiah.online -uroot -pRoboShop@1 < /app/db/app-user.sql"
     when: schema.stdout != "1"
 
-  - name: load cities data
+  - name: load cities data - master-data
     ansible.builtin.shell: "mysql -h mysql.lingaiah.online -uroot -pRoboShop@1 < /app/db/master-data.sql"
     when: schema.stdout != "1"
 
