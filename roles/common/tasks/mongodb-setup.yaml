@@ -9,7 +9,7 @@
     state: present
 
 - name: "get the catalogue entries count"
-  ansible.builtin.command: mongosh --host {{MONGODB_HOST}} --quiet --eval 'db = db.getSiblingDB("catalogue"); db.products.countDocuments()'
+  ansible.builtin.shell:  mongosh  --host {{MONGODB_HOST}} --quiet --eval 'db = db.getSiblingDB("catalogue"); db.products.countDocuments()'
   register: products_count
   when: component == "catalogue"
 
@@ -19,13 +19,13 @@
   when: component == "catalogue"
 
 - name: "load catalogue data"
-  ansible.builtin.command: mongosh --host {{MONGODB_HOST}} < /app/schema/{{component}}.js
+  ansible.builtin.shell: "mongosh --host {{MONGODB_HOST}} < /app/schema/{{component}}.js"
   when: component == "catalogue" and products_count.stdout == "0"  # keep double quotes
   #ignore_errors: true
 
 
 - name: "get the user entries count"
-  ansible.builtin.command:  mongosh --host {{MONGODB_HOST}} --quiet --eval 'db = db.getSiblingDB("users"); db.users.countDocuments()'
+  ansible.builtin.shell:  mongosh --host {{MONGODB_HOST}} --quiet --eval 'db = db.getSiblingDB("users"); db.users.countDocuments()'
   register: users_count
   when: component == "user"
 
@@ -35,7 +35,7 @@
   when: component == "user"
 
 - name: "load user data"
-  ansible.builtin.command: mongosh --host {{MONGODB_HOST}} < /app/schema/{{component}}.js
+  ansible.builtin.shell: "mongosh --host {{MONGODB_HOST}} < /app/schema/{{component}}.js"
   when: component == "user" and users_count.stdout == "0"  # keep double quotes
   #ignore_errors: true
   
