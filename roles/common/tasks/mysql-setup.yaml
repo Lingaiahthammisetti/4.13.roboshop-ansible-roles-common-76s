@@ -23,8 +23,8 @@
     ansible.builtin.shell: "mysql -h {{MYSQL_HOST}} -uroot -pRoboShop@1 < /app/db/master-data.sql"
     when: schema.stdout != "1"
 
-- name: restart shipping
-  ansible.builtin.service:
-    name: shipping
-    state: restarted
-    enabled: yes
+  - name: restart shipping
+    ansible.builtin.service:
+      name: shipping
+      state: restarted
+      enabled: yes
