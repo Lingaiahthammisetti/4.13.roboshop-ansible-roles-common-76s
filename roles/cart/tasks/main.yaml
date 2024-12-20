@@ -1,5 +1,3 @@
-
-
 - name: nodejs
   ansible.builtin.import_role:
     name: common
@@ -9,6 +7,11 @@
   ansible.builtin.import_role:
     name: common
     tasks_from: app-setup
+
+- name: nodejs-npm
+  ansible.builtin.import_role:
+    name: common
+    tasks_from: nodejs-npm
 
 - name: system start
   ansible.builtin.import_role:
